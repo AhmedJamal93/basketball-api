@@ -11,6 +11,7 @@ let newPlayer = null;
 let playerDetails = [];
 let playerInfo_1 = null;
 let playerInfo_2 = null;
+let picURL = 'https://nba-players.herokuapp.com/players/'
 
 function get_nextSibling(n) {
     var y = n.nextSibling;
@@ -34,6 +35,13 @@ router.get('/', function(req,res, body){
       if(playerName[i].innerHTML.toLowerCase() === playername){
         console.log(playerName[i].innerHTML)
         newPlayer = playerName[i].innerHTML
+        newPlayer_name = newPlayer.split(' ')
+        newPlayer_firstName = newPlayer_name[0];
+        newPlayer_lastName = newPlayer_name[1];
+        console.log(newPlayer_firstName, 'first name')
+        console.log(newPlayer_lastName, 'last name')
+        picURL = `${picURL}${newPlayer_lastName}/${newPlayer_firstName}`
+        console.log(picURL)
         playerDetails.push(newPlayer)
         playerInfo_1 = playerName[i]
       }
@@ -45,8 +53,12 @@ router.get('/', function(req,res, body){
       // console.log(playerInfo_2_text)
       playerInfo_1 = playerInfo_2
     }
-    res.render('index', {playerDetails})
+    res.render('index', {
+      playerDetails:playerDetails,
+      playerPic:picURL
+    })
     console.log(playerDetails)
+    picURL = 'https://nba-players.herokuapp.com/players/'
     playerDetails = [];
     return playerName;
   })
