@@ -5,16 +5,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <<body class='container'>
+  <body class='container'>
     <h1 class='jumbotron text-center'>Fantasy Basketball</h1>
     <div class="row">
   <div class="col-xs-6 col-xs-offset-6">
-    <form action="/" method="GET">
+    <form action="/show" method="GET">
       <div class="input-group">
         <input type="text" name="PlayerName" class="form-control"
           placeholder="Enter Player Name">
         <span class="input-group-btn">
           <button class="btn btn-success" type="submit">Go!</button>
+
         </span>
       </div>
     </form>
@@ -22,24 +23,7 @@
 </div>
 <hr>
 <div class="row col-xs-8 col-xs-offset-2">
-  <h4> Player Details </h4>
-  <ul>
-    <img src='<%= playerPic %>'/>
-    <li> Name: <%= playerDetails[0]%></li>
-    <li> Team: <%= playerDetails[1]%></li>
-    <li> Position: <%= playerDetails[2]%></li>
-    <li> Games: <%= playerDetails[3]%></li>
-    <li> PPG: <%= Math.round((playerDetails[4]/82)*10)/10%></li>
-    <li> FG%: <%= playerDetails[5]%></li>
-    <li> FT%: <%= playerDetails[6]%></li>
-    <li> RPG: <%= playerDetails[7]%></li>
-    <li> APG: <%= Math.round((playerDetails[8]/82)*10)/10%></li>
-    <li> BPG: <%= Math.round((playerDetails[9]/82)*10)/10%></li>
-    <li> SPG: <%= Math.round((playerDetails[10]/82)*10)/10%></li>
-    <li> 3PT/game: <%= Math.round((playerDetails[11]/82)*10)/10%></li>
-    <li> MPG: <%= Math.round((playerDetails[12]/82)*10)/10%></li>
-    <li> TOPG: <%= Math.round((playerDetails[13]/82)*10)/10%></li>
-
+<a href='/new'>Add New Player</a>
 </div>
   </body>
 </html>

@@ -4,6 +4,9 @@ const request = require('request');
 const fetch = require('node-fetch')
 const jsdom = require('jsdom')
 const {JSDOM} = jsdom;
+
+const playersCtrl = ('./controllers/index')
+
 const token = process.env.BALL_TOKEN;
 const rootURL = 'https://www.fantasybasketballnerd.com/service/players/';
 var parser, xmlDoc;
@@ -12,6 +15,7 @@ let playerDetails = [];
 let playerInfo_1 = null;
 let playerInfo_2 = null;
 let picURL = 'https://nba-players.herokuapp.com/players/'
+// let playername = 'kyle lowry'
 
 function get_nextSibling(n) {
     var y = n.nextSibling;
@@ -20,8 +24,20 @@ function get_nextSibling(n) {
     }
     return y;
 }
+
+
+
 router.get('/', function(req,res, body){
-  const playername = req.query.PlayerName;
+  res.render('index')
+
+})
+
+router.get('/new',function(req,res){
+  res.render('new')
+})
+
+router.get('/show', function(req,res){
+  let playername = req.query.player
   fetch("https://www.fantasybasketballnerd.com/service/draft-projections")
   .then(function(resp){
     return resp.text();
@@ -53,15 +69,16 @@ router.get('/', function(req,res, body){
       // console.log(playerInfo_2_text)
       playerInfo_1 = playerInfo_2
     }
-    res.render('index', {
+    res.render('show', {
       playerDetails:playerDetails,
       playerPic:picURL
     })
     console.log(playerDetails)
     picURL = 'https://nba-players.herokuapp.com/players/'
     playerDetails = [];
+    // playername = req.query.PlayerName;
     return playerName;
   })
+  // res.render('show')
 })
-
 module.exports = router;
