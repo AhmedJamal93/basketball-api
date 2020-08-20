@@ -7,23 +7,20 @@
   </head>
   <body class='container'>
     <h1 class='jumbotron text-center'>Fantasy Basketball</h1>
-    <div class="row">
-  <div class="col-xs-6 col-xs-offset-6">
-    <form action="/show" method="GET">
-      <div class="input-group">
-        <input type="text" name="PlayerName" class="form-control"
-          placeholder="Enter Player Name">
-        <span class="input-group-btn">
-          <button class="btn btn-success" type="submit">Go!</button>
-
-        </span>
-      </div>
-    </form>
+<!-- Login Logout -->
+<nav>  
+  <div class="row col-xs-8 col-xs-offset-2">
+  	<% if (user) { %>
+  		<a href="/logout">Log Out</a>
+  	<% } else { %>
+  		<a href="/auth/google">Login with Google</a>
+  	<% } %>
+  <!--  -->
+  <hr>
+  <a href='/new'>Add New Player</a>
+  <hr>
+  <a href="/myteam">My Team</a>
   </div>
-</div>
-<hr>
-<div class="row col-xs-8 col-xs-offset-2">
-<a href='/new'>Add New Player</a>
-</div>
+</nav>
   </body>
 </html>
