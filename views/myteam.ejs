@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>My Team</title>
+</head>
+<body>
+  <h1>My Team</h1>
+  <table>
+      <thead>
+          <tr>
+              <th></th>
+              <th>Player Name</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% players.forEach(function(m) { %>
+          <tr>
+            <td>
+              <img src='<%= m.imgUrl %>'/>
+            </td>
+            <td>
+              <a href='/showMy?player=<%=m.name.toLowerCase().split(' ')[0]%>+<%=m.name.toLowerCase().split(' ')[1]%>'><%= m.name %></a>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+  </table>
+</body>
+</html>

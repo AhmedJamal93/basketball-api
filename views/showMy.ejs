@@ -23,13 +23,11 @@
       <li> MPG: <%= Math.round((playerDetails[12]/82)*10)/10%></li>
       <li> TOPG: <%= Math.round((playerDetails[13]/82)*10)/10%></li>
     </ul>
-    <form action="/new" method="GET" autocomplete="off">
-      <button type="submit">Back to Search</button>
+    <form action="/myteam" method="GET" autocomplete="off">
+      <button type="submit">Back to My Team</button>
     </form>
-    <form action="/myteam" method="POST" autocomplete="off">
-      <input type='hidden' value='<%= playerPic %>' name='imgUrl'>
-      <input type='hidden' value='<%= playerDetails[0] %>' name='name'>
-      <button type="submit">Add Player</button>
+    <form action="/showMy/<%=playerDetails[0].toLowerCase().split(' ')[0]%>+<%=playerDetails[0].toLowerCase().split(' ')[1]%>?_method=DELETE" method="POST" autocomplete="off">
+      <button type="submit">Delete Player</button>
     </form>
   </body>
 </html>
