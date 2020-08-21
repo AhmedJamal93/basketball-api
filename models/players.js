@@ -15,6 +15,7 @@ const userSchema = new Schema(
   {
     name:String,
     email:String,
+    players:[playerSchema],
     playername:String,
     imgUrl:String,
     // googleId:String

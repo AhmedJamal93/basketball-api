@@ -61,6 +61,10 @@ function get_nextSibling(n) {
 //     });
 // })
 
+router.get('/', function(req,res){
+  res.render('index')
+})
+
 router.get('/new',function(req,res){
   res.render('new')
 })
