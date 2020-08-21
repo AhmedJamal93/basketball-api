@@ -9,6 +9,13 @@
     <h1 class='jumbotron text-center'>Fantasy Basketball</h1>
 <!-- Login Logout -->
 <nav>
+  <div class="row col-xs-8 col-xs-offset-2">
+    <% if (user) { %>
+      <a href="/logout">Log Out</a>
+    <% } else { %>
+      <a href="/auth/google">Login with Google</a>
+    <% } %>
+  <hr>
   <a href='/new'>Add New Player</a>
   <hr>
   <a href="/myteam">My Team</a>
