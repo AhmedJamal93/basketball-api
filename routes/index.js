@@ -3,29 +3,18 @@ var router = express.Router();
 const studentsCtrl = require('../controllers/index')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
-// const Player = require('../models/index');
 const User = require('../models/players');
-// const Player = Student.players
-// const initializePassport = require('../passport-config')
-// initializePassport(passport)
-
 const request = require('request');
 const fetch = require('node-fetch')
 const jsdom = require('jsdom')
 const {JSDOM} = jsdom;
-
 const playersCtrl = ('./controllers/index')
-
-const token = process.env.BALL_TOKEN;
-const rootURL = 'https://www.fantasybasketballnerd.com/service/players/';
 var parser, xmlDoc;
 let newPlayer = null;
 let playerDetails = [];
 let playerInfo_1 = null;
 let playerInfo_2 = null;
-let picURL = 'https://nba-players.herokuapp.com/players/'
-
-const users = [];
+let picURL = 'https://nba-players.herokuapp.com/players/';
 
 function get_nextSibling(n) {
     var y = n.nextSibling;
@@ -58,20 +47,13 @@ router.get('/logout', function(req,res){
 
 // Get users
 router.get('/', function(req,res,next){
-
   console.log(req.query);
-
   const modelQuery = req.query.name ? { name: new RegExp(req.query.name, 'i') } : {};
-
-
   const sortKey = req.query.sort || 'name';
-
   User.find(modelQuery)
     .sort(sortKey)
     .exec(function(err, users) {
       if (err) return next(err);
-
-
       res.render('index', {
         user: req.user,
         name: req.query.name,
@@ -79,38 +61,6 @@ router.get('/', function(req,res,next){
       });
     });
 })
-// router.get('/login', function(req,res){
-//   res.render('login');
-// })
-//
-// router.post('/login', function(req,res){
-//
-// })
-//
-// router.get('/register', function(req,res){
-//   res.render('register');
-// })
-//
-// router.post('/register', async function(req,res){
-//   try{
-//     const hashedPassword = await bcrypt.hash(req.body.password, 10)
-//     // const users = new User({
-//     users.push({
-//       id:Date.now().toString(),
-//       name:req.body.name,
-//       email:req.body.email,
-//       password:hashedPassword
-//     })
-//     res.redirect('/login')
-//   } catch {
-//     res.redirect('/register')
-//   }
-//   console.log(users)
-// })
-//
-// router.get('/', function(req,res, body){
-//   res.render('index')
-// })
 
 router.get('/new',function(req,res){
   res.render('new')
@@ -146,7 +96,6 @@ router.get('/show', function(req,res){
       playerInfo_2 = get_nextSibling(playerInfo_1);
       playerInfo_2_text = playerInfo_2.innerHTML
       playerDetails.push(playerInfo_2_text)
-      // console.log(playerInfo_2_text)
       playerInfo_1 = playerInfo_2
     }
     res.render('show', {
@@ -156,10 +105,8 @@ router.get('/show', function(req,res){
     console.log(playerDetails)
     picURL = 'https://nba-players.herokuapp.com/players/'
     playerDetails = [];
-    // playername = req.query.PlayerName;
     return playerName;
   })
-  // res.render('show')
 })
 
 router.get('/myteam', function(req,res){
@@ -170,7 +117,6 @@ router.get('/myteam', function(req,res){
 
 router.post('/myteam', function(req,res){
   let player = new User(req.body);
-  // player.name = req.query.player;
   console.log(req.body)
   player.save(function(err){
     if(err){
@@ -244,26 +190,12 @@ router.delete('/showMy/:playername', function(req,res){
             console.log('error')
           }
           console.log(result)
-          // res.deletedCount
           res.redirect('/myteam')
         })
       }
     }
   })
   console.log(playerName)
-  //
 })
-
-// router.get('/', function(req,res){
-//   res.render('index')
-// })
-
-// router.get('/myteam', function(req,res){
-//   res.redirect('/myteam')
-// })
-//
-// router.get('/new', function(req,res){
-//   res.render('new')
-// })
 
 module.exports = router;

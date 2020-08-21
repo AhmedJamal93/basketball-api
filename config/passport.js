@@ -2,7 +2,7 @@ const passport = require('passport');
 
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-const Student = require('../models/players');
+const User = require('../models/players');
 
 passport.use(
   new GoogleStrategy(
@@ -16,26 +16,26 @@ passport.use(
     function(accessToken, refreshToken, profile, cb) {
       // get the unique identifier from Google People API that comes back on the oauth CB
       // take that id, and look up the user in DB
-      Student.findOne({ googleId: profile.id }, function(err, student) {
+      User.findOne({ googleId: profile.id }, function(err, user) {
         // early return if error
         if (err) return cb(err);
 
-        if (student) {
-          return cb(null, student);
+        if (user) {
+          return cb(null, user);
         }
 
         // DOESNT RUN IF STUDENT IS FOUND
         // we have a new student via OAuth!
 
-        const newStudent = new Student({
+        const newUser = new User({
           name: profile.displayName,
           email: profile.emails[0].value,
           googleId: profile.id,
         });
 
-        newStudent.save(function(err) {
+        newUser.save(function(err) {
           if (err) return cb(err);
-          return cb(null, newStudent);
+          return cb(null, newUser);
         });
       });
     }
@@ -43,14 +43,14 @@ passport.use(
 );
 
 // used to give Passport the nugget of data to put into the session for this authenticated user
-passport.serializeUser(function(student, done) {
-  done(null, student.id);
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
 });
 
 // used to provide Passport with the user from the db we want assigned to the req.user object.
 
 passport.deserializeUser(function(id, done) {
-  Student.findById(id, function(err, student) {
-    done(err, student);
+  User.findById(id, function(err, user) {
+    done(err, user);
   });
 });
