@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const studentsCtrl = require('../controllers/index')
 const passport = require('passport')
-const bcrypt = require('bcrypt')
 const User = require('../models/players');
 const request = require('request');
 const fetch = require('node-fetch')
