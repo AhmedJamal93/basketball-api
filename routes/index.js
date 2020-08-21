@@ -23,43 +23,43 @@ function get_nextSibling(n) {
     return y;
 }
 
-// Login Route
-router.get('/auth/google', passport.authenticate(
-  'google',
-  {scope:['profile','email']}
-));
-
-// Google Callback Route
-router.get('/oauth2callback', passport.authenticate(
-  'google',
-  {
-    successRedirect : '/',
-    failureRedirect : '/'
-  }
-));
-
-// Logout Route
-router.get('/logout', function(req,res){
-  req.logout();
-  res.redirect('/')
-})
-
-// Get users
-router.get('/', function(req,res,next){
-  console.log(req.query);
-  const modelQuery = req.query.name ? { name: new RegExp(req.query.name, 'i') } : {};
-  const sortKey = req.query.sort || 'name';
-  User.find(modelQuery)
-    .sort(sortKey)
-    .exec(function(err, users) {
-      if (err) return next(err);
-      res.render('index', {
-        user: req.user,
-        name: req.query.name,
-        sortKey
-      });
-    });
-})
+// // Login Route
+// router.get('/auth/google', passport.authenticate(
+//   'google',
+//   {scope:['profile','email']}
+// ));
+//
+// // Google Callback Route
+// router.get('/oauth2callback', passport.authenticate(
+//   'google',
+//   {
+//     successRedirect : '/',
+//     failureRedirect : '/'
+//   }
+// ));
+//
+// // Logout Route
+// router.get('/logout', function(req,res){
+//   req.logout();
+//   res.redirect('/')
+// })
+//
+// // Get users
+// router.get('/', function(req,res,next){
+//   console.log(req.query);
+//   const modelQuery = req.query.name ? { name: new RegExp(req.query.name, 'i') } : {};
+//   const sortKey = req.query.sort || 'name';
+//   User.find(modelQuery)
+//     .sort(sortKey)
+//     .exec(function(err, users) {
+//       if (err) return next(err);
+//       res.render('index', {
+//         user: req.user,
+//         name: req.query.name,
+//         sortKey
+//       });
+//     });
+// })
 
 router.get('/new',function(req,res){
   res.render('new')
