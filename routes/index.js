@@ -138,6 +138,7 @@ router.get('/showMy', function(req,res){
     return resp.text();
   })
   .then(function(data){
+    
     let parser = new JSDOM(`${data}`,{contentType :'text/xml' });
 
     console.log(playername)
