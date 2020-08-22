@@ -1,5 +1,9 @@
 # basketball-api
 
+![alt text](https://i.imgur.com/lKtxcdF.png "main screen")
+![alt text](https://i.imgur.com/QYIZTA6.png "Search new player")
+![alt text](https://i.imgur.com/y68VmOx.png "My Team page")
+![alt text](https://i.imgur.com/8POxZ2j.png "Players detail page")
 ## Goal
 Make an app that would allow you to select your favourite basketball players and add them to your fantasy team to be able to monitor their stats. If the player is not performing, you can drop that specific player and pick another player to replace him.
 
