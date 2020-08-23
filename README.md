@@ -8,7 +8,7 @@
 Make an app that would allow you to select your favourite basketball players and add them to your fantasy team to be able to monitor their stats. If the player is not performing, you can drop that specific player and pick another player to replace him.
 
 ## Getting Started
-At this time Heroku is not working
+https://fantasy-basketball-api-1.herokuapp.com/
 
 ## Technologies Used
 In addition to the technologies used from project 1:
